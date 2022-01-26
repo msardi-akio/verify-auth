@@ -10,7 +10,7 @@ import (
 
 var mySigningKey = []byte(os.Getenv("JWT_SIGNKEY"))
 
-func IsAuthorized(endpoint func(http.ResponseWriter, *http.Request)) http.Handler {
+func IsAuthorized(endpoint func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Header["Authorization"] != nil {
 
