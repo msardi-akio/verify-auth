@@ -51,8 +51,8 @@ func IsAuthorizedAdmin(endpoint func(http.ResponseWriter, *http.Request)) http.H
 
 			if token.Valid {
 				if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
-					usuariId := claims["rol"]
-					if usuariId == 8 {
+					usuariId := claims["UsuariId"]
+					if usuariId == "8" {
 						endpoint(w, r)
 					}
 				}
