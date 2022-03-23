@@ -54,6 +54,8 @@ func IsAuthorizedAdmin(endpoint func(http.ResponseWriter, *http.Request)) http.H
 					usuariId := claims["UsuariId"]
 					if usuariId == "8" {
 						endpoint(w, r)
+					} else {
+						http.Error(w, "Not authorized", http.StatusUnauthorized)
 					}
 				}
 			}
