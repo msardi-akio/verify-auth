@@ -64,3 +64,17 @@ func IsAuthorizedAdmin(endpoint func(http.ResponseWriter, *http.Request)) http.H
 		}
 	})
 }
+
+// Get the claims from the (already verified) token in the HTTP request header
+func GetClaims(r *http.Request) (jwt.MapClaims, error) {
+	token, _, err := new(jwt.Parser).ParseUnverified(r.Header["Authorization"][0], jwt.MapClaims{})
+	if err != nil {
+		return nil, err
+	}
+
+	if claims, ok := token.Claims.(jwt.MapClaims); ok {
+		return claims, nil
+	} else {
+		return nil, err
+	}
+}
