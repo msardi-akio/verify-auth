@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt"
 )
 
 var mySigningKey = []byte(os.Getenv("JWT_SIGNKEY"))
