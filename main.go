@@ -78,3 +78,13 @@ func GetClaims(r *http.Request) (jwt.MapClaims, error) {
 		return nil, err
 	}
 }
+
+// Get the claims from the (already verified) token in the HTTP request header
+func GetToken(r *http.Request) (string, error) {
+	token, _, err := new(jwt.Parser).ParseUnverified(r.Header["Authorization"][0], jwt.MapClaims{})
+	if err != nil {
+		return "", err
+	}
+
+	return token.Raw, nil
+}
